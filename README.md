@@ -24,7 +24,7 @@ The password generator application fulfills the following acceptance criteria:
 ### Viewing the homepage 
 
 In order to access the password generator application, navigate to the following link: 
- [Password generator page](https://jemimasiddiqui.github.io/Password-Generator-by-Jemima-Siddiqui/). 
+ [Password generator page](https://jemimasiddiqui.github.io/Password-Generator-by-Jemima-Siddiqui/Develop/index.html). 
 
 ### Downloading Visual Studio Code 
 
