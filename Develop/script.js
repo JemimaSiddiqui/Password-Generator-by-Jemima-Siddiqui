@@ -56,6 +56,8 @@ function generatePassword() {
     }; 
 
     // Checking whether the users said yes or no to the specified prompts 
+    // Using conditional statements to get lowercase, uppercase, numerics and 
+    // special characters 
     if (passwordLowercase === true) { 
         lowercaseMin = generatorFunction.getLowercase(); 
         countMin++; 
@@ -73,19 +75,54 @@ function generatePassword() {
         countMin++; 
     }
     
-    // Random password generation 
+    // Random password generation which gets displayed to the text-box based on specified criteria
     var randomPassword = ""; 
-
-    for (let i = 0; i < (parseInt(passwordLength) - countMin); i++) {
-        var randomNumber = Math.floor(Math.random() * 4);
-        randomPassword += randomNumber;
-    }
     
+    // if user wants numbers, uppercase and lowercase and either special char or not 
+    if(passwordNumeric === false && passwordLowercase === true && passwordUppercase === true && (passwordSpecial === true || passwordSpecial === false)) { 
+        var allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'; 
+        for (let i = 0; i < (parseInt(passwordLength) - countMin); i++) {
+            var randomNumber = allLetters.charAt(Math.floor(Math.random() * 4));
+            randomPassword += randomNumber;
+        }
+    }
+    // if user wants no numbers, lowercase, no uppercase and either special char or not 
+    if(passwordNumeric === false && passwordLowercase === true && passwordUppercase === false && (passwordSpecial === true || passwordSpecial === false)){ 
+        var onlyLowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+        for (let i = 0; i < (parseInt(passwordLength) - countMin); i++) {
+            var randomNumber = onlyLowercaseLetters.charAt(Math.floor(Math.random() * 4));
+            randomPassword += randomNumber;
+        }
+    }
+    // if user wants no numbers, no lowercase, uppercase and either special char or not 
+    if(passwordNumeric === false && passwordLowercase === false && passwordUppercase === true && (passwordSpecial === true || passwordSpecial === false)){ 
+        var onlyUppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        for (let i = 0; i < (parseInt(passwordLength) - countMin); i++) {
+            var randomNumber = onlyUppercaseLetters.charAt(Math.floor(Math.random() * 4));
+            randomPassword += randomNumber;
+        }
+    }
+    // if user wants numbers and all other conditions can be a yes or no 
+    if(passwordNumeric === true && (passwordLowercase === true || passwordLowercase === false) && (passwordUppercase === true || passwordUppercase === false) && 
+      (passwordSpecial === true || passwordSpecial === false)){ 
+        for (let i = 0; i < (parseInt(passwordLength) - countMin); i++) {
+            var randomNumber = Math.floor(Math.random() * 4);
+            randomPassword += randomNumber;
+        }
+    }
+    // if user wants only special characters 
+    if(passwordSpecial === true && passwordLowercase === false && passwordUppercase === false && passwordNumeric === false) {
+        for (let i = 0; i < (parseInt(passwordLength) - countMin); i++) {
+            var randomNumber = specialCharacters.charAt(Math.floor(Math.random() * 4));
+            randomPassword += randomNumber;
+        }
+    }
+
     randomPassword += numericMin; 
     randomPassword += lowercaseMin;
     randomPassword += uppercaseMin;
     randomPassword += specialMin;
-    
+
     return randomPassword; 
     
 }
